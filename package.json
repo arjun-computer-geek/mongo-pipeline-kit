@@ -1,0 +1,48 @@
+{
+    "name": "mongo-pipeline-kit",
+    "version": "0.1.0",
+    "description": "A feature-rich MongoDB pipeline builder kit for creating, reusing, and managing aggregation pipelines",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "test": "jest",
+        "lint": "eslint src/**/*.ts",
+        "format": "prettier --write \"src/**/*.ts\"",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm test && npm run lint",
+        "preversion": "npm run lint",
+        "version": "npm run format && git add -A src",
+        "postversion": "git push && git push --tags"
+    },
+    "keywords": [
+        "mongodb",
+        "pipeline",
+        "aggregation",
+        "builder",
+        "typescript",
+        "query",
+        "database"
+    ],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.11.19",
+        "@typescript-eslint/eslint-plugin": "^7.0.1",
+        "@typescript-eslint/parser": "^7.0.1",
+        "eslint": "^8.56.0",
+        "jest": "^29.7.0",
+        "prettier": "^3.2.5",
+        "ts-jest": "^29.1.2",
+        "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "mongodb": "^6.3.0"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ]
+}
