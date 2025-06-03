@@ -119,56 +119,13 @@ Utility class for composing and reusing pipeline segments.
 - `extend(basePipeline: Pipeline, extension: Pipeline)`: Extend an existing pipeline
 - `validate(pipeline: Pipeline)`: Validate a pipeline structure
 
----
-
-## Publishing Guide
-
-### Publishing to npm
-
-1. **Login to npm (if not already):**
-   ```bash
-   npm login
-   ```
-2. **Build the package:**
-   ```bash
-   npm run build
-   ```
-3. **Publish to npm:**
-   ```bash
-   npm publish --access public
-   ```
-   - Make sure your `package.json` has a unique name and correct version.
-   - If you update your code, bump the version using `npm version patch|minor|major` before publishing again.
-
-### Publishing to GitHub
-
-1. **Initialize a git repository (if not already):**
-   ```bash
-   git init
-   git remote add origin https://github.com/yourusername/mongo-pipeline-kit.git
-   ```
-2. **Add and commit your changes:**
-   ```bash
-   git add .
-   git commit -m "Initial commit"
-   ```
-3. **Push to GitHub:**
-   ```bash
-   git push -u origin main
-   ```
-   - If you use a different branch, replace `main` with your branch name.
-
-### Best Practices
-- Keep your `README.md` and documentation up to date.
-- Use semantic versioning for releases.
-- Tag releases in GitHub for better tracking.
-- Add tests and CI/CD for robust publishing.
-
----
-
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.
+
+## Publishing
+
+For information about publishing new versions, please refer to our [Publishing Guide](PUBLISHING.md).
 
 ## License
 
