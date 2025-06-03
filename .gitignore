@@ -28,4 +28,7 @@ coverage/
 
 # Logs
 logs/
-*.log 
+*.log
+
+# Ignore npm pack archives (tarballs)
+*.tgz 
