@@ -29,18 +29,14 @@ jobs:
                   issue_number: issue.number,
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  body: `👋 Thanks for reporting this issue!
-
-It looks like this might be missing some important information. Could you please add:
-
-- **mongo-pipeline-kit version** you're using  
-- **Node.js version**  
-- **MongoDB version** (if applicable)  
-- **Operating System**  
-
-This helps us reproduce and fix the issue faster. You can edit your issue to add this information.
-
-For more guidance, check out our [Issue Management Guide](https://github.com/arjun-computer-geek/mongo-pipeline-kit/blob/main/ISSUES.md).`
+                  body: '👋 Thanks for reporting this issue!\\n\\n' +
+                        'It looks like this might be missing some important information. Could you please add:\\n\\n' +
+                        '- **mongo-pipeline-kit version** you\\'re using\\n' +
+                        '- **Node.js version**\\n' +
+                        '- **MongoDB version** (if applicable)\\n' +
+                        '- **Operating System**\\n\\n' +
+                        'This helps us reproduce and fix the issue faster. You can edit your issue to add this information.\\n\\n' +
+                        'For more guidance, check out our [Issue Management Guide](https://github.com/arjun-computer-geek/mongo-pipeline-kit/blob/main/ISSUES.md).'
                 });
               }
             }
