@@ -10,7 +10,7 @@
         "format": "prettier --write \"src/**/*.ts\"",
         "prepare": "npm run build",
         "preversion": "echo skipping lint",
-        "version": "npm run format && git add -A src",
+        "version": "npm run format && git add -A src CHANGELOG.md",
         "postversion": "git push && git push --tags",
         "prepublish": "npm run build"
     },
@@ -25,6 +25,14 @@
     ],
     "author": "",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/arjun-computer-geek/mongo-pipeline-kit.git"
+    },
+    "bugs": {
+        "url": "https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues"
+    },
+    "homepage": "https://github.com/arjun-computer-geek/mongo-pipeline-kit#readme",
     "devDependencies": {
         "@types/jest": "^29.5.12",
         "@types/node": "^20.11.19",
@@ -42,6 +50,8 @@
     "files": [
         "dist",
         "README.md",
-        "LICENSE"
+        "LICENSE",
+        "CONTRIBUTING.md",
+        "CHANGELOG.md"
     ]
 }
