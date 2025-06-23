@@ -1,6 +1,9 @@
 name: Issue Management
 
 on:
+  push:
+    branches:
+      - main
   issues:
     types: [opened, edited, labeled, unlabeled]
   pull_request:
