@@ -1,6 +1,6 @@
 {
     "name": "mongo-pipeline-kit",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "A feature-rich MongoDB pipeline builder kit for creating, reusing, and managing aggregation pipelines",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
