@@ -8,7 +8,7 @@ This guide helps you understand how to report issues, request features, and get 
 
 1. **Check Documentation**: Review the [README.md](README.md) and [EXAMPLES.md](EXAMPLES.md)
 2. **Search Existing Issues**: Use the search bar to find similar issues
-3. **Check Discussions**: Look in [GitHub Discussions](https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions)
+3. **Check Previous Questions**: Look for similar questions in existing issues
 
 ### Issue Types
 
@@ -190,10 +190,10 @@ We use the following labels to categorize issues:
 
 ### Support Channels
 
-1. **GitHub Issues**: For bugs and feature requests
-2. **GitHub Discussions**: For questions and general discussion
-3. **Email**: arjun2000raj@gmail.com (for private matters)
-4. **Documentation**: README.md and EXAMPLES.md
+1. **GitHub Issues**: For bugs, feature requests, and questions
+2. **Email**: arjun2000raj@gmail.com (for private matters)
+3. **Documentation**: README.md and EXAMPLES.md
+4. **NPM Package Page**: For general questions and reviews
 
 ### Response Times
 
@@ -234,7 +234,7 @@ We track issue metrics to improve the project:
 - [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute
 - [CHANGELOG.md](CHANGELOG.md) - Version history
 - [GitHub Issues](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues)
-- [GitHub Discussions](https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions)
+- [NPM Package](https://www.npmjs.com/package/mongo-pipeline-kit)
 
 ---
 

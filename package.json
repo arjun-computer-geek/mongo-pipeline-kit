@@ -14,7 +14,7 @@
         "postversion": "git push && git push --tags",
         "prepublish": "npm run build",
         "issues": "open https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues",
-        "discussions": "open https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions",
+        "npm": "open https://www.npmjs.com/package/mongo-pipeline-kit",
         "docs": "open https://github.com/arjun-computer-geek/mongo-pipeline-kit#readme"
     },
     "keywords": [

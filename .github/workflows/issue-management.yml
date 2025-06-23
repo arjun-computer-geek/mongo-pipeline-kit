@@ -95,15 +95,15 @@ Thanks for taking the time to create this issue. We'll review it and get back to
 **Quick Links:**
 - 📚 [Documentation](https://github.com/arjun-computer-geek/mongo-pipeline-kit#readme)
 - 💡 [Examples](https://github.com/arjun-computer-geek/mongo-pipeline-kit/blob/main/EXAMPLES.md)
-- 💬 [Discussions](https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions)
 - 📧 [Email Support](mailto:arjun2000raj@gmail.com)
+- 📦 [NPM Package](https://www.npmjs.com/package/mongo-pipeline-kit)
 
 **Response Times:**
 - 🐛 Critical Bugs: 24-48 hours
 - 🚀 Feature Requests: 1 week
 - ❓ Questions: 2-3 days
 
-Feel free to ask questions in [Discussions](https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions) for general help!`
+Feel free to ask questions using our [question template](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues/new?template=question.md) for help!`
             });
 
   auto-label:

@@ -321,9 +321,9 @@ If you encounter any issues or need help with mongo-pipeline-kit:
 
 1. **📚 Check Documentation**: Review the [README.md](README.md) and [EXAMPLES.md](EXAMPLES.md)
 2. **🔍 Search Issues**: Look for similar issues in [GitHub Issues](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues)
-3. **💬 Ask Questions**: Use [GitHub Discussions](https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions) for general questions
-4. **🐛 Report Bugs**: Create a bug report using our [issue template](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues/new?template=bug_report.md)
-5. **🚀 Request Features**: Suggest new features using our [feature request template](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues/new?template=feature_request.md)
+3. **🐛 Report Bugs**: Create a bug report using our [issue template](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues/new?template=bug_report.md)
+4. **🚀 Request Features**: Suggest new features using our [feature request template](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues/new?template=feature_request.md)
+5. **❓ Ask Questions**: Use our [question template](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues/new?template=question.md) for help
 6. **📧 Email Support**: Contact arjun2000raj@gmail.com for private matters
 
 ### Issue Guidelines
