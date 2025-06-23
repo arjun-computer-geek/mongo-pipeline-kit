@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.3] - 2024-01-15
+
+### Added
+
+- **GitHub Sponsors Integration**: Now fully active and working at https://github.com/sponsors/arjun-computer-geek
+- **FUNDING.md**: Updated funding page with active sponsorship link
+- **Sponsorship Benefits**: Clear explanation of how sponsorships help the project
+
+### Changed
+
+- Updated package.json with working GitHub Sponsors funding link
+- Enhanced FUNDING.md with active sponsorship information
+- Improved funding configuration for better user experience
+
+### Fixed
+
+- **Funding Link**: Now properly redirects to active GitHub Sponsors page
+- **Sponsorship Flow**: Users can now sponsor the project directly through GitHub
+
 ## [0.3.2] - 2024-01-15
 
 ### Fixed
