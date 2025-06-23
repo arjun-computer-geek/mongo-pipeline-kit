@@ -322,4 +322,57 @@ export class PipelineBuilder implements IPipelineBuilder {
     this.stages.splice(index, 1);
     return this;
   }
+
+  /**
+   * Get the pipeline as a JSON string
+   * @param pretty Whether to format the JSON with indentation
+   * @returns JSON string representation of the pipeline
+   */
+  toJSON(pretty: boolean = false): string {
+    const pipeline = this.build();
+    return pretty ? JSON.stringify(pipeline, null, 2) : JSON.stringify(pipeline);
+  }
+
+  /**
+   * Get the pipeline as a plain object (not stringified)
+   * @returns Object representation of the pipeline
+   */
+  toObject(): Pipeline {
+    return this.build();
+  }
+
+  /**
+   * Export pipeline with metadata
+   * @param metadata Additional metadata to include
+   * @returns Object with pipeline and metadata
+   */
+  exportWithMetadata(metadata: Record<string, any> = {}): {
+    pipeline: Pipeline;
+    metadata: {
+      stageCount: number;
+      createdAt: string;
+      [key: string]: any;
+    };
+  } {
+    return {
+      pipeline: this.build(),
+      metadata: {
+        stageCount: this.getStageCount(),
+        createdAt: new Date().toISOString(),
+        ...metadata,
+      },
+    };
+  }
+
+  /**
+   * Get a human-readable string representation of the pipeline
+   * @returns Formatted string showing pipeline stages
+   */
+  toString(): string {
+    const stages = this.stages.map((stage, index) => {
+      const operator = Object.keys(stage)[0];
+      return `${index + 1}. ${operator}`;
+    });
+    return `Pipeline with ${this.stages.length} stages:\n${stages.join('\n')}`;
+  }
 }

@@ -1,6 +1,7 @@
 export * from "./types";
 export * from "./PipelineBuilder";
 export * from "./PipelineComposer";
+export * from "./PipelineUtils";
 
 // Re-export commonly used types for convenience
 export type {

@@ -1,6 +1,6 @@
 # Mongo Pipeline Kit
 
-A feature-rich MongoDB pipeline builder kit for creating, reusing, and managing aggregation pipelines with ease.
+A feature-rich MongoDB pipeline builder kit for creating, reusing, and managing aggregation pipelines with ease. Now with enhanced JSON support, pipeline utilities, and advanced analysis capabilities.
 
 ## Features
 
@@ -11,6 +11,10 @@ A feature-rich MongoDB pipeline builder kit for creating, reusing, and managing 
 - 🔍 Built-in pipeline validation
 - 📝 Comprehensive pipeline documentation
 - 🧩 Modular and extensible design
+- 📄 **NEW**: JSON export/import functionality
+- 🛠️ **NEW**: Advanced pipeline utilities and analysis
+- 📊 **NEW**: Pipeline statistics and complexity estimation
+- 🔄 **NEW**: Pipeline comparison and manipulation tools
 
 ## Installation
 
@@ -40,6 +44,128 @@ const pipeline = builder
 
 // Use the pipeline with MongoDB
 const results = await collection.aggregate(pipeline).toArray();
+```
+
+## JSON Export/Import
+
+### Export Pipeline to JSON
+
+```typescript
+import { PipelineBuilder } from "mongo-pipeline-kit";
+
+const builder = new PipelineBuilder()
+  .match({ status: "active" })
+  .group({ _id: "$category", count: { $sum: 1 } })
+  .sort({ count: -1 })
+  .limit(10);
+
+// Get JSON string (compact)
+const jsonString = builder.toJSON();
+console.log(jsonString);
+// Output: [{"$match":{"status":"active"}},{"$group":{"_id":"$category","count":{"$sum":1}}},{"$sort":{"count":-1}},{"$limit":10}]
+
+// Get JSON string (pretty formatted)
+const prettyJson = builder.toJSON(true);
+console.log(prettyJson);
+// Output: Formatted JSON with indentation
+
+// Export with metadata
+const exportData = builder.exportWithMetadata({
+  description: "Active users by category",
+  author: "John Doe",
+  version: "1.0.0",
+});
+```
+
+### Import Pipeline from JSON
+
+```typescript
+import { PipelineUtils } from "mongo-pipeline-kit";
+
+const jsonString = `[
+  {"$match": {"status": "active"}},
+  {"$group": {"_id": "$category", "count": {"$sum": 1}}},
+  {"$sort": {"count": -1}},
+  {"$limit": 10}
+]`;
+
+// Parse JSON string to pipeline
+const pipeline = PipelineUtils.fromJSON(jsonString);
+
+// Use with PipelineBuilder
+const builder = new PipelineBuilder();
+pipeline.forEach((stage) => builder.addStage(stage));
+```
+
+## Pipeline Utilities
+
+### Pipeline Analysis
+
+```typescript
+import { PipelineUtils } from "mongo-pipeline-kit";
+
+const pipeline = [
+  { $match: { status: "active" } },
+  { $group: { _id: "$category", count: { $sum: 1 } } },
+  { $sort: { count: -1 } },
+  { $limit: 10 },
+];
+
+// Get pipeline statistics
+const stats = PipelineUtils.getStats(pipeline);
+console.log(stats);
+// Output:
+// {
+//   stageCount: 4,
+//   stageTypes: { '$match': 1, '$group': 1, '$sort': 1, '$limit': 1 },
+//   totalSize: 156,
+//   estimatedComplexity: 6
+// }
+
+// Get human-readable description
+const description = PipelineUtils.describe(pipeline);
+console.log(description);
+```
+
+### Pipeline Manipulation
+
+```typescript
+// Clone a pipeline
+const clonedPipeline = PipelineUtils.clone(pipeline);
+
+// Filter stages by type
+const matchStages = PipelineUtils.filterByStageType(pipeline, "$match");
+
+// Remove specific stage type
+const pipelineWithoutLimit = PipelineUtils.removeStageType(pipeline, "$limit");
+
+// Insert a stage at specific position
+const newPipeline = PipelineUtils.insertStage(pipeline, 1, {
+  $addFields: { processed: true },
+});
+
+// Replace a stage
+const modifiedPipeline = PipelineUtils.replaceStage(pipeline, 0, {
+  $match: { status: "inactive" },
+});
+```
+
+### Pipeline Comparison
+
+```typescript
+const pipeline1 = [
+  { $match: { status: "active" } },
+  { $group: { _id: "$category", count: { $sum: 1 } } },
+];
+
+const pipeline2 = [
+  { $match: { status: "active" } },
+  { $group: { _id: "$category", count: { $sum: 1 } } },
+  { $sort: { count: -1 } },
+];
+
+const comparison = PipelineUtils.compare(pipeline1, pipeline2);
+console.log(comparison);
 ```
 
 ## Advanced Usage
@@ -88,6 +214,12 @@ const aggregationPipeline = builder
 const finalPipeline = composer
   .compose(filteringPipeline, aggregationPipeline)
   .build();
+
+// Export composed pipeline with metadata
+const exportData = composer.exportWithMetadata({
+  description: "Composed pipeline for user analytics",
+  tags: ["analytics", "users"],
+});
 ```
 
 ## API Documentation
@@ -96,7 +228,7 @@ const finalPipeline = composer
 
 The main class for building MongoDB aggregation pipelines.
 
-#### Methods
+#### Core Methods
 
 - `addFields(fields: object)`: Add a `$addFields` stage
 - `addStage(stage: PipelineStage)`: Add a custom pipeline stage
@@ -128,6 +260,21 @@ The main class for building MongoDB aggregation pipelines.
 - `unset(fields: string | string[])`: Add an `$unset` stage
 - `unwind(field: string | object)`: Add a `$unwind` stage
 
+#### New JSON Export Methods
+
+- `toJSON(pretty?: boolean)`: Convert pipeline to JSON string
+- `toObject()`: Get pipeline as plain object
+- `exportWithMetadata(metadata)`: Export pipeline with additional metadata
+- `toString()`: Get human-readable string representation
+
+#### Pipeline Management Methods
+
+- `clear()`: Clear all stages from the pipeline
+- `getStageCount()`: Get the current number of stages
+- `getStage(index: number)`: Get a specific stage
+- `replaceStage(index: number, stage: PipelineStage)`: Replace a stage
+- `removeStage(index: number)`: Remove a stage
+
 ### PipelineComposer
 
 Utility class for composing and reusing pipeline segments.
@@ -137,6 +284,34 @@ Utility class for composing and reusing pipeline segments.
 - `compose(...pipelines: Pipeline[])`: Compose multiple pipelines
 - `extend(basePipeline: Pipeline, extension: Pipeline)`: Extend an existing pipeline
 - `validate(pipeline: Pipeline)`: Validate a pipeline structure
+- `toJSON(pretty?: boolean)`: Convert composed pipeline to JSON
+- `toObject()`: Get composed pipeline as plain object
+- `exportWithMetadata(metadata)`: Export with metadata
+- `toString()`: Get human-readable representation
+- `hasStage(operator: string)`: Check if pipeline contains specific stage type
+- `getStagesByType(operator: string)`: Get all stages of a specific type
+
+### PipelineUtils
+
+Static utility class for pipeline operations and analysis.
+
+#### Methods
+
+- `fromJSON(jsonString: string)`: Parse JSON string to pipeline
+- `toJSON(pipeline: Pipeline, pretty?: boolean)`: Convert pipeline to JSON
+- `validate(pipeline: Pipeline, options?)`: Validate pipeline structure
+- `clone(pipeline: Pipeline)`: Deep copy pipeline
+- `getStats(pipeline: Pipeline)`: Get pipeline statistics
+- `describe(pipeline: Pipeline)`: Get human-readable description
+- `compare(pipeline1: Pipeline, pipeline2: Pipeline)`: Compare two pipelines
+- `filterByStageType(pipeline: Pipeline, operator: string)`: Filter stages by type
+- `removeStageType(pipeline: Pipeline, operator: string)`: Remove stages by type
+- `insertStage(pipeline: Pipeline, index: number, stage: PipelineStage)`: Insert stage
+- `replaceStage(pipeline: Pipeline, index: number, stage: PipelineStage)`: Replace stage
+
+## Examples
+
+For comprehensive examples of all features, see [EXAMPLES.md](EXAMPLES.md).
 
 ## Contributing
 
