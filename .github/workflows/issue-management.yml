@@ -33,10 +33,10 @@ jobs:
 
 It looks like this might be missing some important information. Could you please add:
 
-- **mongo-pipeline-kit version** you're using
-- **Node.js version**
-- **MongoDB version** (if applicable)
-- **Operating System**
+- **mongo-pipeline-kit version** you're using  
+- **Node.js version**  
+- **MongoDB version** (if applicable)  
+- **Operating System**  
 
 This helps us reproduce and fix the issue faster. You can edit your issue to add this information.
 
