@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.2] - 2024-01-15
+
+### Fixed
+
+- **404 Error Fix**: Removed GitHub Discussions links that were causing 404 errors
+- **Support Channel Improvements**: Updated all documentation to use working support channels
+- **Alternative Support**: Added NPM package page as alternative support channel
+
+### Changed
+
+- Updated issue templates to remove Discussions references
+- Enhanced README.md with working support links
+- Updated GitHub Actions workflow with alternative support channels
+- Replaced `npm run discussions` with `npm run npm` for NPM package access
+- Added ENABLE_DISCUSSIONS.md guide for manual setup
+
+### Added
+
+- **ENABLE_DISCUSSIONS.md**: Guide for manually enabling GitHub Discussions
+- **NPM Package Links**: Direct links to NPM package for reviews and feedback
+- **Improved Support Flow**: Better guidance for users seeking help
+
 ## [0.3.1] - 2024-01-15
 
 ### Added
