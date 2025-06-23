@@ -17,7 +17,7 @@ jobs:
           script: |
             const issue = context.payload.issue;
             const body = issue.body || '';
-            
+
             // Check if it's a bug report without environment info
             if (issue.title.includes('[BUG]') || issue.labels.some(l => l.name === 'bug')) {
               const hasEnvironmentInfo = body.includes('mongo-pipeline-kit version') || 
@@ -40,7 +40,7 @@ jobs:
                 });
               }
             }
-            
+
             // Check if it's a feature request without use cases
             if (issue.title.includes('[FEATURE]') || issue.labels.some(l => l.name === 'enhancement')) {
               const hasUseCases = body.includes('Use Cases') || body.includes('use case');
@@ -50,17 +50,13 @@ jobs:
                   issue_number: issue.number,
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  body: `🚀 Thanks for the feature request!
-
-To help us understand and prioritize this feature, could you please add:
-
-- **Use Cases**: Real-world examples of how this would be used
-- **Impact**: Who would benefit and how much?
-- **Priority**: High/Medium/Low
-
-This helps us evaluate the feature and implement it effectively. You can edit your issue to add this information.
-
-For more guidance, check out our [Issue Management Guide](https://github.com/arjun-computer-geek/mongo-pipeline-kit/blob/main/ISSUES.md).`
+                  body: '🚀 Thanks for the feature request!\\n\\n' +
+                        'To help us understand and prioritize this feature, could you please add:\\n\\n' +
+                        '- **Use Cases**: Real-world examples of how this would be used\\n' +
+                        '- **Impact**: Who would benefit and how much?\\n' +
+                        '- **Priority**: High/Medium/Low\\n\\n' +
+                        'This helps us evaluate the feature and implement it effectively. You can edit your issue to add this information.\\n\\n' +
+                        'For more guidance, check out our [Issue Management Guide](https://github.com/arjun-computer-geek/mongo-pipeline-kit/blob/main/ISSUES.md).'
                 });
               }
             }
@@ -74,32 +70,28 @@ For more guidance, check out our [Issue Management Guide](https://github.com/arj
         with:
           script: |
             const issue = context.payload.issue;
-            
+
             // Don't welcome if it's a bot or automated issue
             if (issue.user.type === 'Bot') {
               return;
             }
-            
+
             await github.rest.issues.createComment({
               issue_number: issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `👋 Welcome to mongo-pipeline-kit!
-
-Thanks for taking the time to create this issue. We'll review it and get back to you soon.
-
-**Quick Links:**
-- 📚 [Documentation](https://github.com/arjun-computer-geek/mongo-pipeline-kit#readme)
-- 💡 [Examples](https://github.com/arjun-computer-geek/mongo-pipeline-kit/blob/main/EXAMPLES.md)
-- 📧 [Email Support](mailto:arjun2000raj@gmail.com)
-- 📦 [NPM Package](https://www.npmjs.com/package/mongo-pipeline-kit)
-
-**Response Times:**
-- 🐛 Critical Bugs: 24-48 hours
-- 🚀 Feature Requests: 1 week
-- ❓ Questions: 2-3 days
-
-Feel free to ask questions using our [question template](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues/new?template=question.md) for help!`
+              body: '👋 Welcome to mongo-pipeline-kit!\\n\\n' +
+                    'Thanks for taking the time to create this issue. We\\'ll review it and get back to you soon.\\n\\n' +
+                    '**Quick Links:**\\n' +
+                    '- 📚 [Documentation](https://github.com/arjun-computer-geek/mongo-pipeline-kit#readme)\\n' +
+                    '- 💡 [Examples](https://github.com/arjun-computer-geek/mongo-pipeline-kit/blob/main/EXAMPLES.md)\\n' +
+                    '- 📧 [Email Support](mailto:arjun2000raj@gmail.com)\\n' +
+                    '- 📦 [NPM Package](https://www.npmjs.com/package/mongo-pipeline-kit)\\n\\n' +
+                    '**Response Times:**\\n' +
+                    '- 🐛 Critical Bugs: 24-48 hours\\n' +
+                    '- 🚀 Feature Requests: 1 week\\n' +
+                    '- ❓ Questions: 2-3 days\\n\\n' +
+                    'Feel free to ask questions using our [question template](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues/new?template=question.md) for help!'
             });
 
   auto-label:
@@ -113,33 +105,33 @@ Feel free to ask questions using our [question template](https://github.com/arju
             const issue = context.payload.issue;
             const title = issue.title.toLowerCase();
             const body = (issue.body || '').toLowerCase();
-            
+
             // Auto-label based on content
             const labels = [];
-            
+
             if (title.includes('bug') || title.includes('error') || title.includes('fail') || 
                 body.includes('error') || body.includes('exception') || body.includes('crash')) {
               labels.push('bug');
             }
-            
+
             if (title.includes('feature') || title.includes('enhancement') || title.includes('improvement') ||
                 body.includes('feature request') || body.includes('new feature') || body.includes('enhancement')) {
               labels.push('enhancement');
             }
-            
+
             if (title.includes('question') || title.includes('help') || title.includes('how') ||
                 body.includes('how to') || body.includes('question') || body.includes('help')) {
               labels.push('question');
             }
-            
+
             if (title.includes('doc') || title.includes('readme') || body.includes('documentation')) {
               labels.push('documentation');
             }
-            
+
             // Add labels if they don't already exist
             const existingLabels = issue.labels.map(l => l.name);
             const newLabels = labels.filter(label => !existingLabels.includes(label));
-            
+
             if (newLabels.length > 0) {
               await github.rest.issues.addLabels({
                 issue_number: issue.number,
@@ -147,4 +139,4 @@ Feel free to ask questions using our [question template](https://github.com/arju
                 repo: context.repo.repo,
                 labels: newLabels
               });
-            } 
+            }
