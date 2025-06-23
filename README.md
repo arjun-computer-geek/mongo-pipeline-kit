@@ -313,6 +313,28 @@ Static utility class for pipeline operations and analysis.
 
 For comprehensive examples of all features, see [EXAMPLES.md](EXAMPLES.md).
 
+## 🐛 Issues & Support
+
+### Getting Help
+
+If you encounter any issues or need help with mongo-pipeline-kit:
+
+1. **📚 Check Documentation**: Review the [README.md](README.md) and [EXAMPLES.md](EXAMPLES.md)
+2. **🔍 Search Issues**: Look for similar issues in [GitHub Issues](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues)
+3. **💬 Ask Questions**: Use [GitHub Discussions](https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions) for general questions
+4. **🐛 Report Bugs**: Create a bug report using our [issue template](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues/new?template=bug_report.md)
+5. **🚀 Request Features**: Suggest new features using our [feature request template](https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues/new?template=feature_request.md)
+6. **📧 Email Support**: Contact arjun2000raj@gmail.com for private matters
+
+### Issue Guidelines
+
+- **Use Templates**: We provide issue templates for bugs, features, and questions
+- **Include Details**: Provide environment info, code examples, and error messages
+- **Be Specific**: Describe what you're trying to achieve and what went wrong
+- **Search First**: Check existing issues to avoid duplicates
+
+For detailed information about reporting issues, see [ISSUES.md](ISSUES.md).
+
 ## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.

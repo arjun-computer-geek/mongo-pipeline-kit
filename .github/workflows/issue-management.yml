@@ -1,0 +1,154 @@
+name: Issue Management
+
+on:
+  issues:
+    types: [opened, edited, labeled, unlabeled]
+  pull_request:
+    types: [opened, edited, labeled, unlabeled]
+
+jobs:
+  issue-triage:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues'
+    steps:
+      - name: Check for missing information
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || '';
+            
+            // Check if it's a bug report without environment info
+            if (issue.title.includes('[BUG]') || issue.labels.some(l => l.name === 'bug')) {
+              const hasEnvironmentInfo = body.includes('mongo-pipeline-kit version') || 
+                                        body.includes('Node.js version') ||
+                                        body.includes('MongoDB version');
+              
+              if (!hasEnvironmentInfo) {
+                await github.rest.issues.createComment({
+                  issue_number: issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: `👋 Thanks for reporting this issue!
+
+It looks like this might be missing some important information. Could you please add:
+
+- **mongo-pipeline-kit version** you're using
+- **Node.js version**
+- **MongoDB version** (if applicable)
+- **Operating System**
+
+This helps us reproduce and fix the issue faster. You can edit your issue to add this information.
+
+For more guidance, check out our [Issue Management Guide](https://github.com/arjun-computer-geek/mongo-pipeline-kit/blob/main/ISSUES.md).`
+                });
+              }
+            }
+            
+            // Check if it's a feature request without use cases
+            if (issue.title.includes('[FEATURE]') || issue.labels.some(l => l.name === 'enhancement')) {
+              const hasUseCases = body.includes('Use Cases') || body.includes('use case');
+              
+              if (!hasUseCases) {
+                await github.rest.issues.createComment({
+                  issue_number: issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: `🚀 Thanks for the feature request!
+
+To help us understand and prioritize this feature, could you please add:
+
+- **Use Cases**: Real-world examples of how this would be used
+- **Impact**: Who would benefit and how much?
+- **Priority**: High/Medium/Low
+
+This helps us evaluate the feature and implement it effectively. You can edit your issue to add this information.
+
+For more guidance, check out our [Issue Management Guide](https://github.com/arjun-computer-geek/mongo-pipeline-kit/blob/main/ISSUES.md).`
+                });
+              }
+            }
+
+  welcome-new-issue:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    steps:
+      - name: Welcome new issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.payload.issue;
+            
+            // Don't welcome if it's a bot or automated issue
+            if (issue.user.type === 'Bot') {
+              return;
+            }
+            
+            await github.rest.issues.createComment({
+              issue_number: issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `👋 Welcome to mongo-pipeline-kit!
+
+Thanks for taking the time to create this issue. We'll review it and get back to you soon.
+
+**Quick Links:**
+- 📚 [Documentation](https://github.com/arjun-computer-geek/mongo-pipeline-kit#readme)
+- 💡 [Examples](https://github.com/arjun-computer-geek/mongo-pipeline-kit/blob/main/EXAMPLES.md)
+- 💬 [Discussions](https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions)
+- 📧 [Email Support](mailto:arjun2000raj@gmail.com)
+
+**Response Times:**
+- 🐛 Critical Bugs: 24-48 hours
+- 🚀 Feature Requests: 1 week
+- ❓ Questions: 2-3 days
+
+Feel free to ask questions in [Discussions](https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions) for general help!`
+            });
+
+  auto-label:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues'
+    steps:
+      - name: Auto-label issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
+            const body = (issue.body || '').toLowerCase();
+            
+            // Auto-label based on content
+            const labels = [];
+            
+            if (title.includes('bug') || title.includes('error') || title.includes('fail') || 
+                body.includes('error') || body.includes('exception') || body.includes('crash')) {
+              labels.push('bug');
+            }
+            
+            if (title.includes('feature') || title.includes('enhancement') || title.includes('improvement') ||
+                body.includes('feature request') || body.includes('new feature') || body.includes('enhancement')) {
+              labels.push('enhancement');
+            }
+            
+            if (title.includes('question') || title.includes('help') || title.includes('how') ||
+                body.includes('how to') || body.includes('question') || body.includes('help')) {
+              labels.push('question');
+            }
+            
+            if (title.includes('doc') || title.includes('readme') || body.includes('documentation')) {
+              labels.push('documentation');
+            }
+            
+            // Add labels if they don't already exist
+            const existingLabels = issue.labels.map(l => l.name);
+            const newLabels = labels.filter(label => !existingLabels.includes(label));
+            
+            if (newLabels.length > 0) {
+              await github.rest.issues.addLabels({
+                issue_number: issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: newLabels
+              });
+            } 

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/arjun-computer-geek/mongo-pipeline-kit#readme
+    about: Please check the README and EXAMPLES.md first
+  - name: 💬 Discussions
+    url: https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions
+    about: Ask questions and share ideas in Discussions
+  - name: 📧 Email Support
+    url: mailto:arjun2000raj@gmail.com
+    about: Contact the maintainer directly via email

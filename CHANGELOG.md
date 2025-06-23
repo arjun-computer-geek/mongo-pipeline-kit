@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2024-01-15
+
+### Added
+
+- **Issue Management System**
+  - GitHub issue templates for bugs, features, and questions
+  - Comprehensive ISSUES.md guide for issue reporting
+  - GitHub Actions workflow for automated issue management
+  - Enhanced package.json with npm-specific issue tracking fields
+  - Support for GitHub Discussions and email support
+  - Auto-labeling and welcome messages for new issues
+  - NPM scripts for quick access to issues, discussions, and docs
+
+### Changed
+
+- Enhanced README.md with issue reporting section and support information
+- Enhanced package.json with author information, funding, and engine requirements
+- Added new keywords for better npm discoverability
+- Improved issue tracking with email support in bugs field
+
 ## [0.3.0] - 2024-01-15
 
 ### Added
@@ -45,17 +65,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Metadata support with timestamps and custom fields
 
 - **Comprehensive Examples**
+
   - Added EXAMPLES.md with detailed usage examples
   - JSON export/import examples
   - Pipeline manipulation examples
   - Pipeline comparison examples
   - Complete workflow examples
 
+- **Issue Management System**
+  - GitHub issue templates for bugs, features, and questions
+  - Comprehensive ISSUES.md guide for issue reporting
+  - GitHub Actions workflow for automated issue management
+  - Enhanced package.json with npm-specific issue tracking fields
+  - Support for GitHub Discussions and email support
+  - Auto-labeling and welcome messages for new issues
+
 ### Changed
 
-- Enhanced README.md with new features documentation
+- Enhanced README.md with new features documentation and issue reporting section
 - Updated API documentation to include new methods
 - Improved type safety and error handling
+- Enhanced package.json with author information, funding, and engine requirements
+- Added new keywords for better npm discoverability
 
 ### Fixed
 

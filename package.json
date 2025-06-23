@@ -1,6 +1,6 @@
 {
     "name": "mongo-pipeline-kit",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "A feature-rich MongoDB pipeline builder kit for creating, reusing, and managing aggregation pipelines with enhanced JSON support and advanced utilities",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -12,7 +12,10 @@
         "preversion": "echo skipping lint",
         "version": "npm run format && git add -A src CHANGELOG.md",
         "postversion": "git push && git push --tags",
-        "prepublish": "npm run build"
+        "prepublish": "npm run build",
+        "issues": "open https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues",
+        "discussions": "open https://github.com/arjun-computer-geek/mongo-pipeline-kit/discussions",
+        "docs": "open https://github.com/arjun-computer-geek/mongo-pipeline-kit#readme"
     },
     "keywords": [
         "mongodb",
@@ -21,18 +24,34 @@
         "builder",
         "typescript",
         "query",
-        "database"
+        "database",
+        "json",
+        "utilities",
+        "analysis"
     ],
-    "author": "",
+    "author": {
+        "name": "Arjun Computer Geek",
+        "email": "arjun2000raj@gmail.com",
+        "url": "https://github.com/arjun-computer-geek"
+    },
     "license": "MIT",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/arjun-computer-geek/mongo-pipeline-kit.git"
     },
     "bugs": {
-        "url": "https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues"
+        "url": "https://github.com/arjun-computer-geek/mongo-pipeline-kit/issues",
+        "email": "arjun2000raj@gmail.com"
     },
     "homepage": "https://github.com/arjun-computer-geek/mongo-pipeline-kit#readme",
+    "funding": {
+        "type": "github",
+        "url": "https://github.com/sponsors/arjun-computer-geek"
+    },
+    "engines": {
+        "node": ">=14.0.0",
+        "npm": ">=6.0.0"
+    },
     "devDependencies": {
         "@types/jest": "^29.5.12",
         "@types/node": "^20.11.19",
@@ -52,6 +71,8 @@
         "README.md",
         "LICENSE",
         "CONTRIBUTING.md",
-        "CHANGELOG.md"
+        "CHANGELOG.md",
+        "EXAMPLES.md",
+        "ISSUES.md"
     ]
 }
