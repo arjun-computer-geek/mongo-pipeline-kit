@@ -19,15 +19,23 @@
     },
     "keywords": [
         "mongodb",
+        "mongo",
         "pipeline",
         "aggregation",
+        "aggregation-pipeline",
         "builder",
+        "query-builder",
         "typescript",
         "query",
         "database",
         "json",
         "utilities",
-        "analysis"
+        "analysis",
+        "data-pipeline",
+        "nodejs",
+        "etl-toolkit",
+        "data-transformation",
+        "mongodb-utils"
     ],
     "author": {
         "name": "Arjun Computer Geek",
