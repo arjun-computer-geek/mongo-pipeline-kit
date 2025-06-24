@@ -159,7 +159,9 @@ export class PipelineComposer implements IPipelineComposer {
    */
   toJSON(pretty: boolean = false): string {
     const pipeline = this.build();
-    return pretty ? JSON.stringify(pipeline, null, 2) : JSON.stringify(pipeline);
+    return pretty
+      ? JSON.stringify(pipeline, null, 2)
+      : JSON.stringify(pipeline);
   }
 
   /**
@@ -202,6 +204,6 @@ export class PipelineComposer implements IPipelineComposer {
       const operator = Object.keys(stage)[0];
       return `${index + 1}. ${operator}`;
     });
-    return `Composed Pipeline with ${this.pipeline.length} stages:\n${stages.join('\n')}`;
+    return `Composed Pipeline with ${this.pipeline.length} stages:\n${stages.join("\n")}`;
   }
 }

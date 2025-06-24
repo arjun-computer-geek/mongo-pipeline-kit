@@ -17,7 +17,9 @@ export class PipelineUtils {
       }
       return parsed;
     } catch (error) {
-      throw new Error(`Failed to parse pipeline JSON: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `Failed to parse pipeline JSON: ${error instanceof Error ? error.message : "Unknown error"}`,
+      );
     }
   }
 
@@ -28,7 +30,9 @@ export class PipelineUtils {
    * @returns JSON string representation
    */
   static toJSON(pipeline: Pipeline, pretty: boolean = false): string {
-    return pretty ? JSON.stringify(pipeline, null, 2) : JSON.stringify(pipeline);
+    return pretty
+      ? JSON.stringify(pipeline, null, 2)
+      : JSON.stringify(pipeline);
   }
 
   /**
@@ -37,7 +41,10 @@ export class PipelineUtils {
    * @param options Validation options
    * @returns True if valid, throws error if invalid
    */
-  static validate(pipeline: Pipeline, options: ValidationOptions = {}): boolean {
+  static validate(
+    pipeline: Pipeline,
+    options: ValidationOptions = {},
+  ): boolean {
     const { strict = true, allowEmpty = false, maxStages = 1000 } = options;
 
     if (!Array.isArray(pipeline)) {
@@ -117,8 +124,9 @@ export class PipelineUtils {
     };
 
     const estimatedComplexity = Object.entries(stageTypes).reduce(
-      (sum, [operator, count]) => sum + (complexityWeights[operator] || 1) * count,
-      0
+      (sum, [operator, count]) =>
+        sum + (complexityWeights[operator] || 1) * count,
+      0,
     );
 
     return {
@@ -135,7 +143,10 @@ export class PipelineUtils {
    * @param operator The stage operator to filter by
    * @returns Filtered pipeline stages
    */
-  static filterByStageType(pipeline: Pipeline, operator: string): PipelineStage[] {
+  static filterByStageType(
+    pipeline: Pipeline,
+    operator: string,
+  ): PipelineStage[] {
     return pipeline.filter((stage) => Object.keys(stage)[0] === operator);
   }
 
@@ -156,7 +167,11 @@ export class PipelineUtils {
    * @param stage The stage to insert
    * @returns New pipeline with inserted stage
    */
-  static insertStage(pipeline: Pipeline, index: number, stage: PipelineStage): Pipeline {
+  static insertStage(
+    pipeline: Pipeline,
+    index: number,
+    stage: PipelineStage,
+  ): Pipeline {
     const newPipeline = [...pipeline];
     newPipeline.splice(index, 0, stage);
     return newPipeline;
@@ -169,7 +184,11 @@ export class PipelineUtils {
    * @param stage The new stage
    * @returns New pipeline with replaced stage
    */
-  static replaceStage(pipeline: Pipeline, index: number, stage: PipelineStage): Pipeline {
+  static replaceStage(
+    pipeline: Pipeline,
+    index: number,
+    stage: PipelineStage,
+  ): Pipeline {
     const newPipeline = [...pipeline];
     newPipeline[index] = stage;
     return newPipeline;
@@ -189,12 +208,14 @@ export class PipelineUtils {
 
     return `Pipeline Description:
 - Total Stages: ${stats.stageCount}
-- Stage Types: ${Object.entries(stats.stageTypes).map(([type, count]) => `${type}(${count})`).join(', ')}
+- Stage Types: ${Object.entries(stats.stageTypes)
+      .map(([type, count]) => `${type}(${count})`)
+      .join(", ")}
 - Estimated Complexity: ${stats.estimatedComplexity}
 - Total Size: ${stats.totalSize} characters
 
 Stages:
-${stageDescriptions.join('\n')}`;
+${stageDescriptions.join("\n")}`;
   }
 
   /**
@@ -203,7 +224,10 @@ ${stageDescriptions.join('\n')}`;
    * @param pipeline2 Second pipeline
    * @returns Comparison result
    */
-  static compare(pipeline1: Pipeline, pipeline2: Pipeline): {
+  static compare(
+    pipeline1: Pipeline,
+    pipeline2: Pipeline,
+  ): {
     areEqual: boolean;
     differences: {
       stageCount: { p1: number; p2: number };
@@ -225,4 +249,4 @@ ${stageDescriptions.join('\n')}`;
       },
     };
   }
-} 
+}

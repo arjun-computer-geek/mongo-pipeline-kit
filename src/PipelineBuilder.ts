@@ -330,7 +330,9 @@ export class PipelineBuilder implements IPipelineBuilder {
    */
   toJSON(pretty: boolean = false): string {
     const pipeline = this.build();
-    return pretty ? JSON.stringify(pipeline, null, 2) : JSON.stringify(pipeline);
+    return pretty
+      ? JSON.stringify(pipeline, null, 2)
+      : JSON.stringify(pipeline);
   }
 
   /**
@@ -373,6 +375,6 @@ export class PipelineBuilder implements IPipelineBuilder {
       const operator = Object.keys(stage)[0];
       return `${index + 1}. ${operator}`;
     });
-    return `Pipeline with ${this.stages.length} stages:\n${stages.join('\n')}`;
+    return `Pipeline with ${this.stages.length} stages:\n${stages.join("\n")}`;
   }
 }
