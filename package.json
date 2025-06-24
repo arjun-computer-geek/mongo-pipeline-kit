@@ -43,9 +43,6 @@
         "url": "https://github.com/arjun-computer-geek"
     },
     "license": "MIT",
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/arjun-computer-geek/mongo-pipeline-kit.git"
